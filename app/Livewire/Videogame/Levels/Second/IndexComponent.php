@@ -101,10 +101,19 @@ class IndexComponent extends Component
 
         $this->lettersGuessed[] = $letter;
 
-        if (str_contains(self::WORD_TO_GUESS, $letter) === false) {
+        // Comprueba si la letra es correcta ANTES de seguir
+        $isCorrect = str_contains(self::WORD_TO_GUESS, $letter);
+
+        if ($isCorrect === false) {
             $this->mistakes++;
+            // ¡NUEVO! Despacha un evento de error
+            $this->dispatch('letter-guessed', correct: false, letter: $letter);
+        } else {
+            // ¡NUEVO! Despacha un evento de acierto
+            $this->dispatch('letter-guessed', correct: true, letter: $letter);
         }
 
+        // Comprobamos el estado del juego DESPUÉS de actualizar todo
         $this->checkGameState();
     }
 

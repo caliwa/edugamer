@@ -29,10 +29,14 @@
             $alphabet = range('A', 'Z');
             $wordArray = str_split($this::WORD_TO_GUESS);
         @endphp
+        
         <div
             wire:poll.1s="countdown"
             x-data="{
                 remaining: $wire.entangle('timeRemaining').live,
+                isShaking: false,
+                lastCorrect: null,
+                lastWrong: null,
                 formattedTime() {
                     if (this.remaining < 0) return '00:00';
                     const minutes = Math.floor(this.remaining / 60);
@@ -40,10 +44,26 @@
                     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
                 }
             }"
-            class="w-full max-w-4xl h-full flex flex-col"
+            @letter-guessed.window="
+                if ($event.detail.correct) {
+                    lastCorrect = $event.detail.letter;
+                    $refs.audioCorrect.play();
+                } else {
+                    lastWrong = $event.detail.letter;
+                    isShaking = true;
+                    $refs.audioWrong.play();
+                    setTimeout(() => isShaking = false, 500);
+                }
+            "
+            :class="isShaking ? 'animate-shake' : ''"
+            class="w-full max-w-4xl h-full flex flex-col transition-transform duration-100"
         >
+            <audio x-ref="audioClick" src="{{ asset('sounds/click.wav') }}" preload="auto"></audio>
+            <audio x-ref="audioCorrect" src="{{ asset('sounds/correct.wav') }}" preload="auto"></audio>
+            <audio x-ref="audioWrong" src="{{ asset('sounds/wrong.wav') }}" preload="auto"></audio>
+        
             <flux:card class="flex-grow flex flex-col p-6">
-                {{-- Encabezado --}}
+                {{-- Encabezado (sin cambios) --}}
                 <div class="flex justify-between items-center">
                     <flux:breadcrumbs>
                         <flux:breadcrumbs.item>Nivel 2</flux:breadcrumbs.item>
@@ -58,44 +78,93 @@
                 {{-- Juego del Ahorcado --}}
                 <div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center text-center mt-8">
                     
-                    {{-- Dibujo del Ahorcado --}}
+                    {{-- Dibujo del Ahorcado (CON ANIMACIONES) --}}
                     <div class="flex justify-center items-center">
                         <svg class="w-64 h-64" viewBox="0 0 100 120">
-                            {{-- Base y poste --}}
+                            {{-- Base (sin animación) --}}
                             <line x1="10" y1="110" x2="90" y2="110" stroke="currentColor" stroke-width="4" />
                             <line x1="30" y1="110" x2="30" y2="10" stroke="currentColor" stroke-width="4" />
                             <line x1="30" y1="10" x2="70" y2="10" stroke="currentColor" stroke-width="4" />
                             <line x1="70" y1="10" x2="70" y2="30" stroke="currentColor" stroke-width="4" />
-                            {{-- Partes del cuerpo --}}
-                            @if($mistakes > 0) <circle cx="70" cy="40" r="10" stroke="currentColor" stroke-width="3" fill="none" /> @endif
-                            @if($mistakes > 1) <line x1="70" y1="50" x2="70" y2="80" stroke="currentColor" stroke-width="3" /> @endif
-                            @if($mistakes > 2) <line x1="70" y1="60" x2="55" y2="70" stroke="currentColor" stroke-width="3" /> @endif
-                            @if($mistakes > 3) <line x1="70" y1="60" x2="85" y2="70" stroke="currentColor" stroke-width="3" /> @endif
-                            @if($mistakes > 4) <line x1="70" y1="80" x2="55" y2="100" stroke="currentColor" stroke-width="3" /> @endif
-                            @if($mistakes > 5) <line x1="70" y1="80" x2="85" y2="100" stroke="currentColor" stroke-width="3" /> @endif
+                            
+                            <circle cx="70" cy="40" r="10" stroke="currentColor" stroke-width="3" fill="none"
+                                    x-show="$wire.mistakes > 0"
+                                    x-transition:enter="transition ease-out duration-300"
+                                    x-transition:enter-start="opacity-0 scale-50"
+                                    x-transition:enter-end="opacity-100 scale-100" />
+                            
+                            <line x1="70" y1="50" x2="70" y2="80" stroke="currentColor" stroke-width="3"
+                                x-show="$wire.mistakes > 1"
+                                x-transition:enter="transition ease-in duration-300"
+                                x-transition:enter-start="opacity-0"
+                                x-transition:enter-end="opacity-100" />
+                            
+                            <line x1="70" y1="60" x2="55" y2="70" stroke="currentColor" stroke-width="3"
+                                x-show="$wire.mistakes > 2"
+                                x-transition:enter="transition ease-in duration-300 delay-100"
+                                x-transition:enter-start="opacity-0"
+                                x-transition:enter-end="opacity-100" />
+                            
+                            <line x1="70" y1="60" x2="85" y2="70" stroke="currentColor" stroke-width="3"
+                                x-show="$wire.mistakes > 3"
+                                x-transition:enter="transition ease-in duration-300 delay-200"
+                                x-transition:enter-start="opacity-0"
+                                x-transition:enter-end="opacity-100" />
+                            
+                            <line x1="70" y1="80" x2="55" y2="100" stroke="currentColor" stroke-width="3"
+                                x-show="$wire.mistakes > 4"
+                                x-transition:enter="transition ease-in duration-300 delay-300"
+                                x-transition:enter-start="opacity-0"
+                                x-transition:enter-end="opacity-100" />
+                            
+                            <line x1="70" y1="80" x2="85" y2="100" stroke="currentColor" stroke-width="3"
+                                x-show="$wire.mistakes > 5"
+                                x-transition:enter="transition ease-in duration-300 delay-400"
+                                x-transition:enter-start="opacity-0"
+                                x-transition:enter-end="opacity-100" />
                         </svg>
                     </div>
 
                     {{-- Palabra y Teclado --}}
                     <div class="space-y-8">
-                        {{-- Palabra a adivinar --}}
+                        {{-- Palabra a adivinar (CON ANIMACIONES) --}}
                         <div class="flex justify-center gap-2">
                             @foreach($wordArray as $char)
                                 <div class="w-10 h-14 flex items-center justify-center text-3xl font-bold border-b-4 {{ $char === ' ' ? 'border-transparent' : 'border-slate-500' }}">
-                                    @if(in_array($char, $lettersGuessed) || $char === ' ')
+                                    <span
+                                        x-data="{ shown: false }"
+                                        x-init="
+                                            shown = $wire.lettersGuessed.includes('{{ $char }}') || '{{ $char }}' === ' ';
+                                            $watch('$wire.lettersGuessed', (value) => {
+                                                if (value.includes('{{ $char }}') && !shown) {
+                                                    shown = true;
+                                                }
+                                            });
+                                        "
+                                        x-show="shown"
+                                        x-transition:enter="transition ease-out duration-300 transform"
+                                        x-transition:enter-start="opacity-0 scale-50"
+                                        x-transition:enter-end="opacity-100 scale-100"
+                                        class="inline-block"
+                                    >
                                         {{ $char }}
-                                    @endif
+                                    </span>
                                 </div>
                             @endforeach
                         </div>
                         
-                        {{-- Teclado Virtual --}}
+                        {{-- Teclado Virtual (CON FEEDBACK) --}}
                         <div class="flex flex-wrap justify-center gap-2 max-w-md mx-auto">
                             @foreach($alphabet as $letter)
                                 <button
                                     wire:click="guessLetter('{{ $letter }}')"
+                                    @click="$refs.audioClick.play()"
                                     :disabled="{{ in_array($letter, $lettersGuessed) ? 'true' : 'false' }}"
-                                    class="w-10 h-10 rounded-md text-lg font-bold bg-slate-700 hover:bg-primary-600 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed"
+                                    :class="{
+                                        'bg-green-600! text-white!': lastCorrect == '{{ $letter }}',
+                                        'bg-red-700! text-white!': lastWrong == '{{ $letter }}'
+                                    }"
+                                    class="w-10 h-10 rounded-md text-lg font-bold bg-slate-700 hover:bg-primary-600 disabled:bg-slate-800 disabled:text-slate-500 disabled:cursor-not-allowed transition-all duration-200"
                                 >
                                     {{ $letter }}
                                 </button>
@@ -104,7 +173,7 @@
                     </div>
                 </div>
 
-                {{-- Overlay de Resultado --}}
+                {{-- Overlay de Resultado (sin cambios) --}}
                 @if($gameStatus !== 'playing')
                     <div class="absolute inset-0 bg-black/70 flex flex-col justify-center items-center backdrop-blur-sm">
                         <flux:heading size="3xl" class="{{ $gameStatus === 'won' ? 'text-green-400' : 'text-red-400' }}">

@@ -26,4 +26,15 @@ export function loadLevelAssets(k) {
             <rect x="14" y="40" width="8" height="4" fill="#C0A060"/>
         </svg>
     `));
+
+    // --- ¡AÑADIR ESTE NUEVO SPRITE! ---
+    k.loadSprite("scroll", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 3H30C33.866 3 37 6.13401 37 10V30C37 33.866 33.866 37 30 37H10C6.13401 37 3 33.866 3 30V10C3 6.13401 6.13401 3 10 3Z" fill="#F0E0C4"/>
+            <path d="M10 5H30C32.7614 5 35 7.23858 35 10V30C35 32.7614 32.7614 35 30 35H10C7.23858 35 5 32.7614 5 30V10C5 7.23858 7.23858 5 10 5Z" fill="#FFF8E8"/>
+            <rect x="10" y="12" width="20" height="2" rx="1" fill="#C0A060"/>
+            <rect x="10" y="18" width="20" height="2" rx="1" fill="#D3A05A"/>
+            <rect x="10" y="24" width="14" height="2" rx="1" fill="#C0A060"/>
+        </svg>
+    `));
 }
