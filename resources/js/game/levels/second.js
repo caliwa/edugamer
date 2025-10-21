@@ -54,6 +54,7 @@ export default function setupLevelSecond(k) {
                 k.wait(0.5, () => {
                     // ... DISPARAS EL EVENTO 'kaplay-completed'
                     Livewire.dispatch('kaplay-completed');
+                    //
                 });
             }
         });
