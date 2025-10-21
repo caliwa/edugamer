@@ -37,4 +37,43 @@ export function loadLevelAssets(k) {
             <rect x="10" y="24" width="14" height="2" rx="1" fill="#C0A060"/>
         </svg>
     `));
+
+    k.loadSprite("lightbulb", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2C14.4772 2 10 6.47715 10 12C10 15.6369 11.9765 18.8872 14.9984 20.8906V25C14.9984 26.1046 15.8938 27 16.9984 27H23.0016C24.1062 27 25.0016 26.1046 25.0016 25V20.8906C28.0235 18.8872 30 15.6369 30 12C30 6.47715 25.5228 2 20 2Z" fill="#FFEB3B" stroke="#F57F17" stroke-width="1.5"/>
+            <rect x="16" y="27" width="8" height="6" rx="1" fill="#B0BEC5"/>
+            <rect x="17" y="33" width="6" height="3" rx="1.5" fill="#78909C"/>
+            <path d="M18 12L20 18L22 12L20 6L18 12Z" fill="#FFF9C4"/>
+        </svg>
+    `));
+
+    k.loadSprite("clipboard", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 4H30C31.1046 4 32 4.89543 32 6V34C32 35.1046 31.1046 36 30 36H10C8.89543 36 8 35.1046 8 34V6C8 4.89543 8.89543 4 10 4Z" fill="#BCAAA4"/>
+            <path d="M14 2H26C27.1046 2 28 2.89543 28 4V8H12V4C12 2.89543 12.8954 2 14 2Z" fill="#795548"/>
+            <rect x="14" y="12" width="12" height="2" rx="1" fill="#FFF"/>
+            <rect x="14" y="18" width="12" height="2" rx="1" fill="#FFF"/>
+            <rect x="14" y="24" width="8" height="2" rx="1" fill="#FFF"/>
+        </svg>
+    `));
+
+    k.loadSprite("data", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="32" height="24" rx="2" fill="#2196F3"/>
+            <rect x="8" y="12" width="8" height="8" fill="#BBDEFB"/>
+            <rect x="8" y="22" width="8" height="6" fill="#BBDEFB"/>
+            <rect x="20" y="12" width="12" height="2" fill="#BBDEFB"/>
+            <rect x="20" y="16" width="12" height="2" fill="#BBDEFB"/>
+            <rect x="20" y="20" width="12" height="2" fill="#BBDEFB"/>
+            <rect x="20" y="24" width="12" height="2" fill="#BBDEFB"/>
+        </svg>
+    `));
+
+    k.loadSprite("fragment", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 5L15 15L10 25L5 15L10 5Z" fill="#9C27B0"/>
+            <path d="M20 10L25 20L20 30L15 20L20 10Z" fill="#BA68C8"/>
+            <path d="M30 5L35 15L30 25L25 15L30 5Z" fill="#E1BEE7"/>
+        </svg>
+    `));
 }

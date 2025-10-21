@@ -41,7 +41,7 @@ export default function setupLevelThird(k) {
             }
         });
 
-        const player = createPlayer(k, k.vec2(80, 312));
+        const player = createPlayer(k, k.vec2(80, 312), "level3");
         
         setupPlayerControls(k, player);
 

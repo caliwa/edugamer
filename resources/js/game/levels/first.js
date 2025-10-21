@@ -41,7 +41,7 @@ export default function setupLevelFirst(k) {
             }
         });
 
-        const player = createPlayer(k, k.vec2(80, 320));
+        const player = createPlayer(k, k.vec2(80, 320), "workshop");
         setupPlayerControls(k, player);
 
         const mentor = k.add([

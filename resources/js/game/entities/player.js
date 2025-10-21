@@ -2,7 +2,7 @@
 const SPEED = 250;
 const JUMP_FORCE = 750;
 
-export function createPlayer(k, initialPos) {
+export function createPlayer(k, initialPos, sceneName) {
     const player = k.add([
         k.sprite("player"),
         k.pos(initialPos),
@@ -13,7 +13,7 @@ export function createPlayer(k, initialPos) {
 
     player.onUpdate(() => {
         if (player.pos.y > k.height()) {
-            k.go("workshop"); // Reinicia la escena actual
+            k.go(sceneName);
         }
     });
 

@@ -41,7 +41,7 @@ export default function setupLevelSecond(k) {
             }
         });
 
-        const player = createPlayer(k, k.vec2(80, 312));
+        const player = createPlayer(k, k.vec2(80, 312), "level2");
         
         setupPlayerControls(k, player);
 
