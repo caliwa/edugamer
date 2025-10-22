@@ -76,4 +76,51 @@ export function loadLevelAssets(k) {
             <path d="M30 5L35 15L30 25L25 15L30 5Z" fill="#E1BEE7"/>
         </svg>
     `));
+    // level 8
+    k.loadSprite("ship", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="40" height="30" viewBox="0 0 40 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 15L40 0V30L0 15Z" fill="#03A9F4"/>
+            <path d="M30 10V20L40 15L30 10Z" fill="#FFC107"/>
+        </svg>
+    `));
+    // Orbe de Idea
+    k.loadSprite("idea_orb", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="15" cy="15" r="14" fill="#FFEB3B" stroke="#FBC02D" stroke-width="2"/>
+            <path d="M13 10L15 16L17 10L15 4L13 10Z" fill="#FFF9C4"/>
+        </svg>
+    `));
+    // Asteroide simple
+    k.loadSprite("asteroid", "data:image/svg+xml," + encodeURIComponent(`
+       <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 0L30 5L40 20L35 30L20 40L10 35L0 20L5 10L20 0Z" fill="#795548"/>
+            <circle cx="10" cy="10" r="3" fill="#A1887F"/>
+             <circle cx="28" cy="25" r="4" fill="#A1887F"/>
+       </svg>
+    `));
+
+    //level 9
+    k.loadSprite("data_point", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="24" width="6" height="4" fill="#4CAF50"/>
+            <rect x="13" y="16" width="6" height="12" fill="#2196F3"/>
+            <rect x="22" y="8" width="6" height="20" fill="#FFC107"/>
+            <path d="M2 28H30" stroke="#90A4AE" stroke-width="2"/>
+        </svg>
+    `));
+    k.loadSprite("noise", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 5L10 15L5 25L15 35L25 25L35 35L35 5L25 15L15 5L5 5Z" stroke="#F44336" stroke-width="3" fill="none"/>
+            <path d="M10 30L20 20L30 30" stroke="#F44336" stroke-width="2" fill="none"/>
+             <path d="M10 10L20 20L30 10" stroke="#F44336" stroke-width="2" fill="none"/>
+        </svg>
+    `));
+    k.loadSprite("analysis_station", "data:image/svg+xml," + encodeURIComponent(`
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="36" height="24" rx="2" fill="#607D8B"/>
+            <rect x="5" y="7" width="30" height="18" fill="#CFD8DC"/>
+            <path d="M12 36H28L30 28H10L12 36Z" fill="#455A64"/>
+            <circle cx="20" cy="38" r="2" fill="#37474F"/>
+        </svg>
+    `));
 }

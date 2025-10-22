@@ -12,6 +12,8 @@ use App\Livewire\Videogame\Levels\Fourth\IndexComponent as FourthLevelIndexCompo
 use App\Livewire\Videogame\Levels\Fifth\IndexComponent as FifthLevelIndexComponent;
 use App\Livewire\Videogame\Levels\Sixth\IndexComponent as SixthLevelIndexComponent;
 use App\Livewire\Videogame\Levels\Seventh\IndexComponent as SeventhLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Eighth\IndexComponent as EighthLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Ninth\IndexComponent as NinthLevelIndexComponent;
 
 Route::get('/', IndexComponent::class);
 Route::get('/register', RegisterComponent::class);
@@ -25,4 +27,6 @@ Route::get('/levels/4', FourthLevelIndexComponent::class)->name('levels.4');
 Route::get('/levels/5', FifthLevelIndexComponent::class)->name('levels.5');
 Route::get('/levels/6', SixthLevelIndexComponent::class)->name('levels.6');
 Route::get('/levels/7', SeventhLevelIndexComponent::class)->name('levels.7');
+Route::get('/levels/8', EighthLevelIndexComponent::class)->name('levels.8');
+Route::get('/levels/9', NinthLevelIndexComponent::class)->name('levels.9');
 // Route::get('/videogame/levels/first', FirstLevelIndexComponent::class)->name('videogame.levels.first');
