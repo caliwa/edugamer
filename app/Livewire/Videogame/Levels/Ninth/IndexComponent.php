@@ -102,9 +102,18 @@ class IndexComponent extends Component
         $this->progress->checkpoint = 3;
         $this->progress->save();
 
-        // $this->unlockNextLevel();
+        $this->unlockNextLevel();
     }
-    private function unlockNextLevel() { /* ... */ }
+    private function unlockNextLevel()
+    {
+        $nextLevel = Level::where('level_number', $this->level->level_number + 1)->first();
+        if ($nextLevel) {
+            LevelProgress::firstOrCreate(
+                ['user_id' => auth()->id(), 'level_id' => $nextLevel->id],
+                ['status' => 'unlocked']
+            );
+        }
+    }
 
     public function render()
     {

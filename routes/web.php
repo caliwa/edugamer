@@ -14,6 +14,14 @@ use App\Livewire\Videogame\Levels\Sixth\IndexComponent as SixthLevelIndexCompone
 use App\Livewire\Videogame\Levels\Seventh\IndexComponent as SeventhLevelIndexComponent;
 use App\Livewire\Videogame\Levels\Eighth\IndexComponent as EighthLevelIndexComponent;
 use App\Livewire\Videogame\Levels\Ninth\IndexComponent as NinthLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Tenth\IndexComponent as TenthLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Eleventh\IndexComponent as EleventhLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Twelfth\IndexComponent as TwelfthLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Thirteenth\IndexComponent as ThirteenthLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Fourteenth\IndexComponent as FourteenthLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Fifteenth\IndexComponent as FifteenthLevelIndexComponent;
+use App\Livewire\Videogame\Levels\Sixteenth\IndexComponent as SixteenthLevelIndexComponent;
+
 
 Route::get('/', IndexComponent::class);
 Route::get('/register', RegisterComponent::class);
@@ -29,4 +37,12 @@ Route::get('/levels/6', SixthLevelIndexComponent::class)->name('levels.6');
 Route::get('/levels/7', SeventhLevelIndexComponent::class)->name('levels.7');
 Route::get('/levels/8', EighthLevelIndexComponent::class)->name('levels.8');
 Route::get('/levels/9', NinthLevelIndexComponent::class)->name('levels.9');
+Route::get('/levels/10', TenthLevelIndexComponent::class)->name('levels.10');
+Route::get('/levels/11', EleventhLevelIndexComponent::class)->name('levels.11');
+Route::get('/levels/12', TwelfthLevelIndexComponent::class)->name('levels.12');
+Route::get('/levels/13', ThirteenthLevelIndexComponent::class)->name('levels.13');
+Route::get('/levels/14', FourteenthLevelIndexComponent::class)->name('levels.14');
+Route::get('/levels/15', FifteenthLevelIndexComponent::class)->name('levels.15');
+Route::get('/levels/16', SixteenthLevelIndexComponent::class)->name('levels.16');
+
 // Route::get('/videogame/levels/first', FirstLevelIndexComponent::class)->name('videogame.levels.first');
